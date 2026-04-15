@@ -3,7 +3,7 @@ function Home({ data }) {
 
   return (
     <>
-      <section id="home" className="hero">
+      <section id="home" className="hero reveal">
         <p className="hero-tag">Available for full-time opportunities</p>
         <h2>{data.hero.name}</h2>
         <h3>{data.hero.role}</h3>
@@ -14,20 +14,22 @@ function Home({ data }) {
         </div>
       </section>
 
-      <section className="stack-slider-wrap" aria-label="Technology stack slider">
+      <section className="value-strip reveal" aria-label="Value proposition">
+        {data.valueProps.map((v) => <span key={v} className="value-pill">{v}</span>)}
+      </section>
+
+      <section className="stack-slider-wrap reveal" aria-label="Technology stack slider">
         <div className="stack-track">
-          {stackLoop.map((stack, index) => (
-            <span className="stack-pill" key={`${stack}-${index}`}>{stack}</span>
-          ))}
+          {stackLoop.map((s, i) => <span className="stack-pill" key={`${s}-${i}`}>{s}</span>)}
         </div>
       </section>
 
-      <section id="about" className="panel">
+      <section id="about" className="panel reveal">
         <h3>{data.about.title}</h3>
         <p>{data.about.description}</p>
       </section>
 
-      <section id="experience" className="section-grid">
+      <section id="experience" className="section-grid reveal">
         <h3 className="section-title">Experience</h3>
         <div className="experience-list">
           {data.experience.map((item) => (
@@ -36,13 +38,13 @@ function Home({ data }) {
                 <h4>{item.role}</h4><span>{item.period}</span>
               </div>
               <p className="muted">{item.company} • {item.location}</p>
-              <ul>{item.highlights.map((point) => <li key={point}>{point}</li>)}</ul>
+              <ul>{item.highlights.map((p) => <li key={p}>{p}</li>)}</ul>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="projects" className="section-grid">
+      <section id="projects" className="section-grid reveal">
         <h3 className="section-title">Featured Projects</h3>
         <div className="project-grid">
           {data.projects.map((project) => (
@@ -50,26 +52,31 @@ function Home({ data }) {
               <p className="project-stack">{project.stack}</p>
               <h4>{project.title}</h4>
               <p>{project.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="skills" className="section-grid">
-        <h3 className="section-title">Skills</h3>
-        <div className="skills-grid">
-          {data.skills.groups.map((group) => (
-            <article key={group.title} className="card">
-              <h4>{group.title}</h4>
-              <div className="chip-group">
-                {group.items.map((item) => <span key={item} className="chip">{item}</span>)}
+              <div className="project-links">
+                {project.links?.map((l) => (
+                  <a key={`${project.title}-${l.label}`} href={l.href} target="_blank" rel="noreferrer">
+                    {l.label}
+                  </a>
+                ))}
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="contact" className="panel contact-panel">
+      <section id="skills" className="section-grid reveal">
+        <h3 className="section-title">Skills</h3>
+        <div className="skills-grid">
+          {data.skills.groups.map((g) => (
+            <article key={g.title} className="card">
+              <h4>{g.title}</h4>
+              <div className="chip-group">{g.items.map((i) => <span key={i} className="chip">{i}</span>)}</div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="panel contact-panel reveal">
         <h3>Contact</h3>
         <p>Let&apos;s connect for full-time roles and freelance opportunities.</p>
         <div className="contact-links">
