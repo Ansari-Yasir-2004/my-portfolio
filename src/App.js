@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import MainLayout from './Layouts/MainLayout';
+import Home from './Pages/Home';
+import { portfolioData } from './data';
 
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
-    </div>
+    <MainLayout navLinks={portfolioData.navLinks}>
+      <Home data={portfolioData} />
+    </MainLayout>
   );
 }
 
