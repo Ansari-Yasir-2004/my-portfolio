@@ -4,7 +4,10 @@ function MainLayout({ navLinks, children }) {
   return (
     <>
       <header className="layout-header">
-        <h1>{appConfig.appName}</h1>
+        <div>
+          <p className="brand">{appConfig.appName}</p>
+          <p className="brand-sub">Animated Portfolio</p>
+        </div>
         <nav>
           {navLinks.map((link) => (
             <a key={link.id} href={`#${link.id}`} className="layout-link">
@@ -14,7 +17,7 @@ function MainLayout({ navLinks, children }) {
         </nav>
       </header>
       <main>{children}</main>
-      <footer className="layout-footer">Structure ready for milestone-based implementation.</footer>
+      <footer className="layout-footer">© {new Date().getFullYear()} Yasir Ansari</footer>
     </>
   );
 }
