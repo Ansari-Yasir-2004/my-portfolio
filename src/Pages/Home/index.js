@@ -13,15 +13,12 @@ const Home = ({ data }) => {
 
         {/* LEFT */}
         <div className="hero-left">
-
           <p className="hero-tag">Available for full-time opportunities</p>
-
           <h2 className="hero-name">{data.hero.name}</h2>
-
           <h3 className="hero-typing">
             <Typewriter
               words={[
-                'Full Stack Developer',
+                'Junior Full Stack Web Developer',
                 'React Developer',
                 'Frontend Specialist'
               ]}
@@ -33,24 +30,11 @@ const Home = ({ data }) => {
               delaySpeed={1500}
             />
           </h3>
-
           <p className="hero-copy">{data.hero.summary}</p>
-
           <div className="hero-actions">
-            <a className="btn btn-solid" href={data.hero.ctaPrimary.href}>
-              {data.hero.ctaPrimary.label}
-            </a>
-
-            <a
-              className="btn btn-outline-light"
-              href="/Yasir_Ansari_2026.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Resume
-            </a>
+            <a className="btn btn-solid" href={data.hero.ctaPrimary.href}>{data.hero.ctaPrimary.label}</a>
+            <a className="btn btn-outline-light" href="/Yasir_Ansari_2026.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
           </div>
-
         </div>
 
         {/* RIGHT IMAGE */}
