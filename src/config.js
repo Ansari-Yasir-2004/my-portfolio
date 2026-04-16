@@ -1,4 +1,4 @@
 export const appConfig = {
-  appName: 'Yasir Portfolio',
+  appName: "Yasir's Portfolio",
   apiBaseUrl: '',
 };

@@ -1,5 +1,10 @@
-function Home({ data }) {
+import React, { useState } from "react";
+import CaseStudyModal from "../../Components/CaseStudyModal";
+
+const Home = ({ data }) => {
   const stackLoop = [...data.skills.stackSlider, ...data.skills.stackSlider];
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -10,7 +15,8 @@ function Home({ data }) {
         <p className="hero-copy">{data.hero.summary}</p>
         <div className="hero-actions">
           <a className="btn btn-solid" href={data.hero.ctaPrimary.href}>{data.hero.ctaPrimary.label}</a>
-          <a className="btn btn-outline" href={data.hero.ctaSecondary.href}>{data.hero.ctaSecondary.label}</a>
+          {/* <a className="btn btn-outline" href={data.hero.ctaSecondary.href}>{data.hero.ctaSecondary.label}</a> */}
+          <a className="btn btn-outline-light" href="/Yasir_Ansari_2026.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
         </div>
       </section>
 
@@ -33,7 +39,7 @@ function Home({ data }) {
         <h3 className="section-title">Experience</h3>
         <div className="experience-list">
           {data.experience.map((item) => (
-            <article className="card" key={`${item.role}-${item.period}`}>
+            <article className="card text" key={`${item.role}-${item.period}`}>
               <div className="card-top">
                 <h4>{item.role}</h4><span>{item.period}</span>
               </div>
@@ -53,11 +59,32 @@ function Home({ data }) {
               <h4>{project.title}</h4>
               <p>{project.description}</p>
               <div className="project-links">
-                {project.links?.map((l) => (
-                  <a key={`${project.title}-${l.label}`} href={l.href} target="_blank" rel="noreferrer">
-                    {l.label}
-                  </a>
-                ))}
+
+                <div className="project-links">
+
+                  {project.caseStudy && (
+                    <button
+                      // className="btn btn-outline"
+                      onClick={() => {
+                        setSelectedProject(project);
+                        setIsOpen(true);
+                      }}
+                    >
+                      Case Study
+                    </button>
+                  )}
+
+                  {project.links?.map((l) => (
+                    <a
+                      key={`${project.title}-${l.label}`}
+                      href={l.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {l.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
@@ -68,7 +95,7 @@ function Home({ data }) {
         <h3 className="section-title">Skills</h3>
         <div className="skills-grid">
           {data.skills.groups.map((g) => (
-            <article key={g.title} className="card">
+            <article key={g.title} className="card text">
               <h4>{g.title}</h4>
               <div className="chip-group">{g.items.map((i) => <span key={i} className="chip">{i}</span>)}</div>
             </article>
@@ -78,13 +105,19 @@ function Home({ data }) {
 
       <section id="contact" className="panel contact-panel reveal">
         <h3>Contact</h3>
-        <p>Let&apos;s connect for full-time roles and freelance opportunities.</p>
+        <p>Let&apos;s connect for full-time opportunities.</p>
         <div className="contact-links">
           <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a>
           <a href={`tel:${data.contact.phone.replace(/\s+/g, '')}`}>{data.contact.phone}</a>
           <a href={data.contact.github} target="_blank" rel="noreferrer">GitHub Profile</a>
         </div>
       </section>
+
+      <CaseStudyModal
+        show={isOpen}
+        handleClose={() => setIsOpen(false)}
+        project={selectedProject}
+      />
     </>
   );
 }
