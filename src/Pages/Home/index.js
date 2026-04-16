@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CaseStudyModal from "../../Components/CaseStudyModal";
+import { Typewriter } from "react-simple-typewriter";
 
 const Home = ({ data }) => {
   const stackLoop = [...data.skills.stackSlider, ...data.skills.stackSlider];
@@ -8,16 +9,57 @@ const Home = ({ data }) => {
 
   return (
     <>
-      <section id="home" className="hero reveal">
-        <p className="hero-tag">Available for full-time opportunities</p>
-        <h2>{data.hero.name}</h2>
-        <h3>{data.hero.role}</h3>
-        <p className="hero-copy">{data.hero.summary}</p>
-        <div className="hero-actions">
-          <a className="btn btn-solid" href={data.hero.ctaPrimary.href}>{data.hero.ctaPrimary.label}</a>
-          {/* <a className="btn btn-outline" href={data.hero.ctaSecondary.href}>{data.hero.ctaSecondary.label}</a> */}
-          <a className="btn btn-outline-light" href="/Yasir_Ansari_2026.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+      <section id="home" className="hero reveal hero-flex">
+
+        {/* LEFT */}
+        <div className="hero-left">
+
+          <p className="hero-tag">Available for full-time opportunities</p>
+
+          <h2 className="hero-name">{data.hero.name}</h2>
+
+          <h3 className="hero-typing">
+            <Typewriter
+              words={[
+                'Full Stack Developer',
+                'React Developer',
+                'Frontend Specialist'
+              ]}
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={60}
+              deleteSpeed={40}
+              delaySpeed={1500}
+            />
+          </h3>
+
+          <p className="hero-copy">{data.hero.summary}</p>
+
+          <div className="hero-actions">
+            <a className="btn btn-solid" href={data.hero.ctaPrimary.href}>
+              {data.hero.ctaPrimary.label}
+            </a>
+
+            <a
+              className="btn btn-outline-light"
+              href="/Yasir_Ansari_2026.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume
+            </a>
+          </div>
+
         </div>
+
+        {/* RIGHT IMAGE */}
+        <div className="hero-right">
+          <div className="profile-wrapper">
+            <img src="/profile.png" alt="Yasir Ansari" />
+          </div>
+        </div>
+
       </section>
 
       <section className="value-strip reveal" aria-label="Value proposition">

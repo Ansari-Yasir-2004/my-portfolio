@@ -115,6 +115,34 @@ main {
   background: linear-gradient(165deg, rgba(15, 23, 38, .95), rgba(18, 29, 49, .78));
 }
 
+.hero-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-left {
+  flex: 1;
+  min-width: 260px;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-right img {
+  width: 245px;
+  height: 245px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(48, 212, 255, .4);
+  box-shadow: 0 0 25px rgba(48, 212, 255, 0.3);
+}
+
 .hero-tag {
   display: inline-block;
   margin: 0;
@@ -369,10 +397,19 @@ main {
 /* 📱 TABLET (<= 768px) */
 /* ========================= */
 @media (max-width: 768px) {
-  /* .layout-header {
-    flex-direction: column;
-    align-items: flex-start;
-  } */
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .hero-flex {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-right img {
+    width: 180px;
+    height: 180px;
+  }
 
   nav {
     /* width: 100%; */
